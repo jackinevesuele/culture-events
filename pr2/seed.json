@@ -1,0 +1,76 @@
+{
+  "interests": [
+    {
+      "id": 1,
+      "name": "Музыка"
+    },
+    {
+      "id": 2,
+      "name": "Искусство"
+    },
+    {
+      "id": 3,
+      "name": "Театр"
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "name": "Евгений",
+      "age": 20,
+      "budget": 1500,
+      "interest_ids": [
+        1,
+        2
+      ]
+    }
+  ],
+  "events": [
+    {
+      "id": 1,
+      "name": "Джазовый вечер",
+      "date": "2026-12-15",
+      "price": 1200,
+      "min_age": 16,
+      "interest_ids": [
+        1
+      ],
+      "active": true
+    },
+    {
+      "id": 2,
+      "name": "Выставка современного искусства",
+      "date": "2026-12-16",
+      "price": 400,
+      "min_age": 6,
+      "interest_ids": [
+        2
+      ],
+      "active": true
+    },
+    {
+      "id": 3,
+      "name": "Театральная премьера",
+      "date": "2026-12-17",
+      "price": 2000,
+      "min_age": 18,
+      "interest_ids": [
+        3
+      ],
+      "active": true
+    },
+    {
+      "id": 4,
+      "name": "Музыка и живопись",
+      "date": "2026-12-18",
+      "price": 900,
+      "min_age": 12,
+      "interest_ids": [
+        1,
+        2
+      ],
+      "active": true
+    }
+  ],
+  "recommendations": []
+}
