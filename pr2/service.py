@@ -1,4 +1,3 @@
-"""Поиск мероприятий и формирование рекомендаций."""
 from datetime import date
 import math
 

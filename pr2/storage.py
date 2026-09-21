@@ -1,4 +1,3 @@
-"""Чтение и запись данных приложения."""
 import json
 from pathlib import Path
 

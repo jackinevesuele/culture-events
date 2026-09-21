@@ -1,4 +1,3 @@
-"""Сущности сервиса культурных мероприятий."""
 from datetime import date
 import math
 

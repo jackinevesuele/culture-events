@@ -1,4 +1,3 @@
-"""Консольный интерфейс сервиса."""
 from datetime import date
 from pathlib import Path
 import json

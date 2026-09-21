@@ -1,4 +1,3 @@
-"""Преобразование JSON в связанные объекты и обратно."""
 from datetime import date
 import json
 from pathlib import Path

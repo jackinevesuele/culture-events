@@ -1,4 +1,3 @@
-"""Операции над коллекциями объектов."""
 from datetime import date
 from typing import Union
 from models import Event, Interest, Recommendation, User
