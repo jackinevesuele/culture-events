@@ -1,8 +1,12 @@
 from datetime import date
 import json
 from pathlib import Path
-from models import Event, Interest, Recommendation, User
-from service import find_by_id
+if __package__:
+    from .models import Event, Interest, Recommendation, User
+    from .service import find_by_id
+else:
+    from models import Event, Interest, Recommendation, User
+    from service import find_by_id
 
 
 def load_data(path: Path) -> dict:

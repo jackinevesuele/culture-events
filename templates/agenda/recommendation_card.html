@@ -1,0 +1,14 @@
+<div class="recommendation">
+  {% include "agenda/event_card.html" %}
+  <div class="rec-bottom">
+    <p class="muted">Общих интересов: {{ event.score }}</p>
+    <div class="actions">
+    {% if event.state == 'dismissed' or event.state == 'saved' %}
+      <form method="post" action="{% url 'agenda:recommendation_change' event.pk 'restore' %}">{% csrf_token %}<button class="button secondary" type="submit">Вернуть в подборку</button></form>
+    {% else %}
+      <form method="post" action="{% url 'agenda:recommendation_change' event.pk 'save' %}">{% csrf_token %}<button class="button" type="submit">Сохранить</button></form>
+      <form method="post" action="{% url 'agenda:recommendation_change' event.pk 'dismiss' %}">{% csrf_token %}<button class="button secondary" type="submit">Отклонить</button></form>
+    {% endif %}
+    </div>
+  </div>
+</div>

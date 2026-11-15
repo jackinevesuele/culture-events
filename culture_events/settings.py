@@ -46,6 +46,11 @@ DATABASES = {
                 "NAME": BASE_DIR / "db.sqlite3"}
 }
 STATIC_URL = "/static/"
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+LOGIN_URL = "agenda:login"
+LOGIN_REDIRECT_URL = "agenda:recommendations"
+LOGOUT_REDIRECT_URL = "agenda:home"
 LANGUAGE_CODE = "ru"
 TIME_ZONE = "Europe/Moscow"
 USE_TZ = True

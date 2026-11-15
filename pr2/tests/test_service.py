@@ -2,9 +2,9 @@ from datetime import date
 from pathlib import Path
 import pytest
 
-from service import (add_user, dismiss, is_suitable, recommend,
-                     search_events)
-from storage import load_data, save_data
+from pr2.service import (add_user, dismiss, is_suitable, recommend,
+                         search_events)
+from pr2.storage import load_data, save_data
 
 
 @pytest.fixture

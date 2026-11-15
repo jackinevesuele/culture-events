@@ -5,6 +5,10 @@
 <section class="intro">
   <p class="eyebrow">{{ event.date|date:"j E Y"|default:event.date }} · {{ event.min_age }}+</p>
   <h1>{{ event.name }}</h1>{% include "agenda/tags.html" %}
-  <p>{% if event.price %}{{ event.price|floatformat:"-2" }} ₽{% else %}Бесплатно{% endif %}</p>
+  <p>{% if event.venue %}{{ event.venue }} · {% endif %}{% if event.price %}{{ event.price|floatformat:"-2" }} ₽{% else %}Бесплатно{% endif %}</p>
+  {% if not event.active %}<p class="notice">Событие снято с афиши.</p>{% endif %}
+  {% if perms.agenda.change_event %}<a class="button secondary" href="{% url 'agenda:event_edit' event.pk %}">Редактировать</a>{% endif %}
 </section>
+{% if event.poster %}<img class="detail-poster" src="{{ event.poster.url }}" alt="Афиша мероприятия {{ event.name }}">{% endif %}
+{% if event.description %}<div class="description">{{ event.description|linebreaks }}</div>{% endif %}
 {% endblock %}

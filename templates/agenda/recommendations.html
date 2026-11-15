@@ -2,6 +2,12 @@
 {% block title %}Рекомендации · Культурный маршрут{% endblock %}
 {% block content %}
 <section class="intro"><p class="eyebrow">Персональная афиша</p><h1>Рекомендации</h1><p>События с общими интересами, подходящие по возрасту и бюджету.</p></section>
-<div class="grid">{% for event in events %}{% include "agenda/event_card.html" %}{% empty %}<p class="empty">Подходящих событий пока нет.</p>{% endfor %}</div>
-{% include "includes/pagination.html" %}
+{% if visitor %}
+  <p class="muted">{{ visitor.name }} · Бюджет до {{ visitor.budget|floatformat:"-2" }} ₽ · <a class="text-link" href="{% url 'agenda:profile' %}">Изменить профиль</a></p>
+  {% include "includes/filters.html" %}
+  <div class="grid">{% for event in page %}{% include "agenda/recommendation_card.html" %}{% empty %}<p class="empty">Подходящих событий пока нет.</p>{% endfor %}</div>
+  {% include "includes/pagination.html" %}
+{% else %}
+  <div class="panel"><p>Добавьте возраст, бюджет и интересы, чтобы получить подборку.</p><a class="button" href="{% url 'agenda:profile' %}">Заполнить профиль</a></div>
+{% endif %}
 {% endblock %}

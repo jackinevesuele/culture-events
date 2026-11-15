@@ -1,6 +1,9 @@
 from datetime import date
 from typing import Union
-from models import Event, Interest, Recommendation, User
+if __package__:
+    from .models import Event, Interest, Recommendation, User
+else:
+    from models import Event, Interest, Recommendation, User
 
 
 def find_by_id(items: list, item_id: int) -> Union[

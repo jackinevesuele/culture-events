@@ -54,5 +54,23 @@ input:not([type=checkbox]), select, textarea { display:block; width:100%; paddin
 input[type=checkbox] { accent-color:var(--wine); }
 .bare { list-style:none; padding:0; }
 .footer { border-top:1px solid var(--line); display:flex; flex-wrap:wrap; justify-content:space-between; gap:12px; padding-block:22px; color:var(--muted); }
+.account { display:flex; align-items:center; flex-wrap:wrap; gap:12px; }
+.edit { max-width:650px; display:grid; justify-items:start; gap:14px; }
+.edit .field { width:100%; }
+.field fieldset { padding:.5rem .75rem; border:1px solid var(--line); border-radius:8px; }
+.field legend { font-weight:700; }
+.helptext { color:var(--muted); font-size:.88rem; margin-top:.25rem; }
+.errorlist { color:#8f1e22; margin:.4rem 0 0; padding-left:1.2rem; }
+.filters .field { flex:1 1 140px; }
+.filters .field:has(.errorlist) { align-self:start; }
+.filter-actions { margin-top:0; }
+.recommendation { min-width:0; border:1px solid var(--line); border-radius:16px; background:#fffaf3; overflow:hidden; }
+.recommendation .card { border:0; border-radius:0; }
+.rec-bottom { padding:0 20px 16px; }
+.rec-bottom p { margin:0; }
+.rec-bottom .actions { margin-top:8px; gap:8px; }
+.rec-bottom .button { padding:7px 10px; font-size:.86rem; }
+.detail-poster { display:block; max-height:530px; max-width:100%; height:auto; border-radius:16px; }
+.description { max-width:700px; }
 @media(max-width:850px) { .grid { grid-template-columns:repeat(2,minmax(0,1fr)); } .nav { flex-wrap:wrap; padding-block:12px; } }
 @media(max-width:620px) { .wrap { width:calc(100% - 32px); } .hero { grid-template-columns:1fr; }.hero-copy { padding:30px 23px; }.hero-art { min-height:215px; }.grid { grid-template-columns:1fr; }.nav nav { gap:13px; }.main { padding-top:22px; } }

@@ -1,10 +1,16 @@
 from django.conf import settings
-from django.core.validators import MaxValueValidator
+from django.core.exceptions import ValidationError
+from django.core.validators import FileExtensionValidator, MaxValueValidator
 from django.db import models
 from django.db.models import Q
 from django.urls import reverse
 
 AGE_LIMIT = 120
+
+
+def validate_poster_size(image):
+    if image.size > 5 * 1024 * 1024:
+        raise ValidationError("Изображение должно занимать не более 5 МБ.")
 
 
 class Interest(models.Model):
@@ -56,6 +62,13 @@ class Event(models.Model):
     active = models.BooleanField("в афише", default=True)
     venue = models.CharField("место проведения", max_length=150, blank=True)
     description = models.TextField("описание", blank=True)
+    poster = models.ImageField(
+        "афиша", upload_to="posters/%Y/%m/", blank=True,
+        validators=[
+            FileExtensionValidator(allowed_extensions=("jpg", "jpeg", "png", "webp")),
+            validate_poster_size,
+        ],
+    )
     interests = models.ManyToManyField(Interest, related_name="events", verbose_name="интересы")
 
     class Meta:

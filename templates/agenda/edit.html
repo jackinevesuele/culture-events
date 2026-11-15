@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}{{ heading }} · Культурный маршрут{% endblock %}
+{% block content %}
+<section class="intro"><h1>{{ heading }}</h1></section>
+<form class="panel edit" method="post"{% if upload %} enctype="multipart/form-data"{% endif %}>
+  {% csrf_token %}
+  {{ form.non_field_errors }}
+  {% for field in form %}{% include "includes/field.html" %}{% endfor %}
+  <button class="button" type="submit">{{ submit }}</button>
+</form>
+{% endblock %}

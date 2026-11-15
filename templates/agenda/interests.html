@@ -2,5 +2,5 @@
 {% block title %}Интересы · Культурный маршрут{% endblock %}
 {% block content %}
 <section class="intro"><p class="eyebrow">Темы афиши</p><h1>Интересы</h1><p>Темы помогают найти подходящие события.</p></section>
-<ul class="grid bare">{% for interest in interests %}<li class="panel"><h2>{{ interest.name }}</h2></li>{% empty %}<li>Темы пока не добавлены.</li>{% endfor %}</ul>
+<ul class="grid bare">{% for interest in interests %}<li class="panel"><h2><a href="{% url 'agenda:events' %}?interest={{ interest.pk }}">{{ interest.name }}</a></h2><p>В афише: {{ interest.total }}</p></li>{% empty %}<li>Темы пока не добавлены.</li>{% endfor %}</ul>
 {% endblock %}
