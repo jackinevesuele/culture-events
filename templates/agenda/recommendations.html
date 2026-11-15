@@ -3,4 +3,5 @@
 {% block content %}
 <section class="intro"><p class="eyebrow">Персональная афиша</p><h1>Рекомендации</h1><p>События с общими интересами, подходящие по возрасту и бюджету.</p></section>
 <div class="grid">{% for event in events %}{% include "agenda/event_card.html" %}{% empty %}<p class="empty">Подходящих событий пока нет.</p>{% endfor %}</div>
+{% include "includes/pagination.html" %}
 {% endblock %}

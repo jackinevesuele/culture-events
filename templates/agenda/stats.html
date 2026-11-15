@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% block title %}Статистика · Культурный маршрут{% endblock %}
+{% block content %}
+<section class="intro"><p class="eyebrow">Данные проекта</p><h1>Статистика</h1></section>
+<div class="grid"><article class="panel"><h2>{{ events }}</h2><p>Будущих событий</p></article><article class="panel"><h2>{{ visitors }}</h2><p>Профилей</p></article><article class="panel"><h2>{{ saved }}</h2><p>Сохранённых рекомендаций</p></article></div>
+{% if events %}<p>Цены в афише от {{ prices.minimum|floatformat:"-2" }} до {{ prices.maximum|floatformat:"-2" }} ₽.</p>{% endif %}
+<section class="section"><h2>События по интересам</h2><ul class="bare">{% for interest in interests %}<li>{{ interest.name }} · {{ interest.total }}</li>{% empty %}<li>Пока нет интересов.</li>{% endfor %}</ul></section>
+{% endblock %}

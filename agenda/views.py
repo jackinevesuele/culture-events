@@ -1,36 +1,63 @@
 from datetime import date
 
-from django.http import Http404
-from django.shortcuts import render
+from django.core.paginator import Paginator
+from django.db.models import Count
+from django.shortcuts import get_object_or_404, render
 
-from . import sql_catalogue as catalogue
+from .models import Event, Interest, Visitor
+from .selectors import (
+    EVENT_SORT, MATCH_SORT, matching_events, search_events, statistics,
+    upcoming_events, with_tags,
+)
 
 
 def home(request):
-    events = catalogue.events("available_events", date.today().isoformat())
-    return render(request, "agenda/home.html", {"events": events[:3]})
+    events = with_tags(upcoming_events())[:3]
+    return render(request, "agenda/home.html", {"events": events})
 
 
 def event_list(request):
     query = request.GET.get("q", "").strip()
-    events = catalogue.events("search_events", query)
-    return render(request, "agenda/events.html", {"events": events, "q": query})
+    sort = EVENT_SORT.get(request.GET.get("sort"), EVENT_SORT["date"])
+    results = with_tags(search_events(upcoming_events(), query)).order_by(*sort)
+    page = Paginator(results, 6).get_page(request.GET.get("page"))
+    return render(request, "agenda/events.html", {"events": page, "page": page, "q": query})
 
 
 def event_detail(request, pk):
-    event = next((e for e in catalogue.events("events") if e["id"] == pk), None)
-    if event is None:
-        raise Http404
+    event = get_object_or_404(with_tags(Event.objects.filter(active=True)), pk=pk)
     return render(request, "agenda/event.html", {"event": event})
 
 
 def interest_list(request):
-    return render(request, "agenda/interests.html", {"interests": catalogue.interests()})
+    interests = Interest.objects.annotate(total=Count("events"))
+    return render(request, "agenda/interests.html", {"interests": interests})
 
 
 def recommendation_list(request):
-    events = catalogue.events("matching_events", 1, date.today().isoformat())
-    return render(request, "agenda/recommendations.html", {"events": events})
+    visitor = Visitor.objects.filter(pk=request.GET.get("user", "1")).first() \
+        if request.GET.get("user", "1").isdecimal() else None
+    events = Event.objects.none()
+    if visitor:
+        on_date = request.GET.get("date", "")
+        try:
+            start = date.fromisoformat(on_date)
+        except ValueError:
+            start = None
+        interest = request.GET.get("interest", "")
+        sort = MATCH_SORT.get(request.GET.get("sort"), MATCH_SORT["score"])
+        events = search_events(
+            matching_events(visitor), interest=interest if interest.isdecimal() else None,
+            start=start,
+        ).order_by(*sort)
+    page = Paginator(with_tags(events), 6).get_page(request.GET.get("page"))
+    return render(request, "agenda/recommendations.html", {
+        "events": page, "page": page, "visitor": visitor,
+    })
+
+
+def stats(request):
+    return render(request, "agenda/stats.html", statistics())
 
 
 def not_found(request, exception):

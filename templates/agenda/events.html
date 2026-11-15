@@ -7,4 +7,5 @@
   <button class="button" type="submit">Найти</button>
 </form>
 <div class="grid">{% for event in events %}{% include "agenda/event_card.html" %}{% empty %}<p class="empty">По этим условиям ничего не найдено.</p>{% endfor %}</div>
+{% include "includes/pagination.html" %}
 {% endblock %}
