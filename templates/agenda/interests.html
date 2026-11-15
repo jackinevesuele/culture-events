@@ -1,0 +1,6 @@
+{% extends "base.html" %}
+{% block title %}Интересы · Культурный маршрут{% endblock %}
+{% block content %}
+<section class="intro"><p class="eyebrow">Темы афиши</p><h1>Интересы</h1><p>Темы помогают найти подходящие события.</p></section>
+<ul class="grid bare">{% for interest in interests %}<li class="panel"><h2>{{ interest.name }}</h2></li>{% empty %}<li>Темы пока не добавлены.</li>{% endfor %}</ul>
+{% endblock %}

@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+{% block title %}Страница не найдена{% endblock %}
+{% block content %}
+<section class="intro"><p class="eyebrow">Ошибка 404</p><h1>Страница не найдена</h1>
+<p>Возможно, мероприятие было удалено или адрес изменился.</p>
+<a class="button" href="{% url 'agenda:events' %}">Открыть афишу</a></section>
+{% endblock %}

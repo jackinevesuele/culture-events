@@ -1,0 +1,11 @@
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="brand" href="{% url 'agenda:home' %}"><span aria-hidden="true" class="mark">✳</span> Культурный маршрут</a>
+    <nav aria-label="Главное меню">
+      <a href="{% url 'agenda:events' %}">Афиша</a>
+      <a href="{% url 'agenda:interests' %}">Интересы</a>
+      <a href="{% url 'agenda:recommendations' %}">Рекомендации</a>
+    </nav>
+    {% block account %}{% endblock %}
+  </div>
+</header>

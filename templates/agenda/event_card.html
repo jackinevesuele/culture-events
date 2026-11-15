@@ -1,0 +1,11 @@
+<article class="card">
+  <a class="poster" href="{% url 'agenda:event' event.id %}" tabindex="-1" aria-hidden="true">
+    <span class="poster-art tone-{{ event.id|divisibleby:3|yesno:'third,first' }}">✳</span>
+  </a>
+  <div class="card-copy">
+    <p class="eyebrow">{{ event.date|date:"j E"|default:event.date }} · {{ event.min_age }}+</p>
+    <h3><a href="{% url 'agenda:event' event.id %}">{{ event.name }}</a></h3>
+    {% if event.venue %}<p class="muted">{{ event.venue }}</p>{% endif %}
+    <div class="card-foot">{% include "agenda/tags.html" %}<strong>{% if event.price %}{{ event.price|floatformat:"-2" }} ₽{% else %}Бесплатно{% endif %}</strong></div>
+  </div>
+</article>

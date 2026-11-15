@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}Афиша · Культурный маршрут{% endblock %}
+{% block content %}
+<section class="intro"><p class="eyebrow">Календарь</p><h1>Афиша</h1><p>Выставки, музыка, театр и встречи.</p></section>
+<form class="filters" method="get">
+  <label>Поиск <input name="q" value="{{ q }}" placeholder="Название мероприятия"></label>
+  <button class="button" type="submit">Найти</button>
+</form>
+<div class="grid">{% for event in events %}{% include "agenda/event_card.html" %}{% empty %}<p class="empty">По этим условиям ничего не найдено.</p>{% endfor %}</div>
+{% endblock %}

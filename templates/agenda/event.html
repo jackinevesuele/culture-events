@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}{{ event.name }} · Культурный маршрут{% endblock %}
+{% block content %}
+<a class="text-link" href="{% url 'agenda:events' %}">← В афишу</a>
+<section class="intro">
+  <p class="eyebrow">{{ event.date|date:"j E Y"|default:event.date }} · {{ event.min_age }}+</p>
+  <h1>{{ event.name }}</h1>{% include "agenda/tags.html" %}
+  <p>{% if event.price %}{{ event.price|floatformat:"-2" }} ₽{% else %}Бесплатно{% endif %}</p>
+</section>
+{% endblock %}

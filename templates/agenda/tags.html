@@ -1,0 +1,1 @@
+<ul class="tags" aria-label="Темы">{% for interest in event.tag_list|default:event.interests %}<li>{{ interest.name }}</li>{% endfor %}</ul>

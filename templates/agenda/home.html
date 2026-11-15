@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="hero">
+  <div class="hero-copy">
+    <p class="eyebrow">Городская афиша</p>
+    <h1>Куда пойдём<br>на этой неделе?</h1>
+    <p>Концерты, выставки, спектакли и другие события. Отметь интересы и получи подборку мероприятий по своему вкусу и бюджету.</p>
+    <div class="actions"><a class="button" href="{% url 'agenda:events' %}">Смотреть афишу <span aria-hidden="true">↗</span></a><a class="text-link" href="{% url 'agenda:recommendations' %}">Моя подборка</a></div>
+  </div>
+  <div class="hero-art" aria-hidden="true"><div class="ticket">АФИША<span>✳</span>КУЛЬТУРНЫЙ<br>МАРШРУТ</div></div>
+</section>
+<section class="section">
+  <div class="section-head"><h2>Ближайшие события</h2><a class="text-link" href="{% url 'agenda:events' %}">Вся афиша ↗</a></div>
+  <div class="grid">{% for event in events %}{% include "agenda/event_card.html" %}{% empty %}<p class="empty">Пока в афише нет ближайших событий.</p>{% endfor %}</div>
+</section>
+{% endblock %}
